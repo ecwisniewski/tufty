@@ -2,14 +2,14 @@ import time
 import random as r
 from pimoroni import Button
 from picographics import PicoGraphics, DISPLAY_TUFTY_2040
-from jpegdec import JPEG
 from pngdec import PNG
 
-
+# Display Constants
 PADDING_Y = 20
 PADDING_X = 20
 BUTTONS_Y = 200
 
+# Initialize Display
 display = PicoGraphics(display =DISPLAY_TUFTY_2040)
 png = PNG(display)
 # RGB Color code
@@ -58,7 +58,7 @@ def print_big_hearts(hearts: List[Dict[str,int]]) ->None:
     for h in hearts:
         png.decode(h["x"],h["y"])
 
-def print_small_hearts(hearts:List[Dict[str,int]])->None: #x:int,y:int) -> None:
+def print_small_hearts(hearts:List[Dict[str,int]])->None: 
     png.open_file("small_pink_heart_bg.png")
     for h in hearts:
         png.decode(h["x"],h["y"])
@@ -73,21 +73,20 @@ def display_page() ->None:
         print_centered_mesgs(0,5,"Happy","Valentine's","Day")
         print_big_hearts([{"x":220,"y":150}])
     elif pg == 1:
-        print_centered_mesgs(0,3,"This years been tough but there's no one else I'd rather suffer with")
+        print_centered_mesgs(0,3,"In love...")
     elif pg==2 or pg == 3:
         print_centered_mesgs(0,3,"Sometimes you have to")
-        print_centered_mesgs(60,5,"SUFFER")
+        print_centered_mesgs(60,5,"WORK")
         if pg==2:
             print_big_hearts([{"x":140,"y":130}])
         else:
-            print_centered_mesgs(140,3,"when you're ready go to the next page")
+            print_centered_mesgs(140,3,"when you're ready, go to the next page")
             print_small_hearts([{"x":155,"y":130}])
     elif pg ==4:
         print_centered_mesgs(0,7,"Collect","The","Hearts")
         print_small_hearts([{"x": 85,"y":115},
                       {"x":222,"y":115}])
         game.reset()
-        game_flag = True
     elif pg==5:
         game.display_game()
     elif pg==6 or pg==7:
